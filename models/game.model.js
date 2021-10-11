@@ -9,8 +9,11 @@ const GameSchema = new mongoose.Schema(
       required: true,
     },
     score: {
-      type: Number,
-      default: 0,
+      user: { type: Number, default: 0 },
+      cpu: {
+        type: Number,
+        default: 0,
+      },
     },
   },
   {
