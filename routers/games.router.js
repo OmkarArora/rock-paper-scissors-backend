@@ -12,6 +12,7 @@ router.route("/create").get(async (req, res) => {
     user = await User.findById(user.userId);
     let game = { user: user._id };
     let NewGame = new Game(game);
+    NewGame = await NewGame.save();
     return res.json({ success: true, game: NewGame });
   } catch (error) {
     res.status(500).json({
