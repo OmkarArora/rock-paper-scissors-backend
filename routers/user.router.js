@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
+const { User } = require("../models/user.model");
 const {
   getPopulatedUserFromId,
   getPopulatedUserFromUsername,
@@ -116,3 +117,5 @@ router.route("/username").post(async (req, res) => {
     });
   }
 });
+
+module.exports = router;

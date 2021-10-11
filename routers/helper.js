@@ -1,4 +1,6 @@
 const { User } = require("../models/user.model");
+require("../models/game.model");
+
 const getPopulatedUserFromId = async (userId, res) => {
   try {
     const user = await User.findById(userId).populate("games");

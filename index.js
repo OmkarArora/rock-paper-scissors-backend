@@ -11,6 +11,9 @@ app.use(cors());
 
 initDBConnection();
 
+const usersRouter = require("./routers/user.router");
+app.use("/users", usersRouter);
+
 app.get("/", (req, res) => {
   res.send("Connected to Rock-Paper-Scissors server");
 });
