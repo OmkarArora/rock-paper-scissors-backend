@@ -15,6 +15,10 @@ const GameSchema = new mongoose.Schema(
         default: 0,
       },
     },
+    numOfRounds: {
+      type: Number,
+      default: 10,
+    },
   },
   {
     timestamps: true,
