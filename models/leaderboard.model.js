@@ -9,6 +9,10 @@ const LeaderboardSchema = new mongoose.Schema(
         ref: "Game",
       },
     ],
+    size: {
+      type: Number,
+      default: 20,
+    },
   },
   {
     timestamps: true,
