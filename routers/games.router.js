@@ -33,15 +33,25 @@ router.route("/create").get(async (req, res) => {
 
 router.route("/score").post(async (req, res) => {
   try {
-    let game = req.body;
+    let { game } = req.body;
+    if (
+      !(game && game._id && game.score && game.score.user && game.score.cpu)
+    ) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Data not formatted properly" });
+    }
     let gameFromDB = await Game.findById(game._id);
     gameFromDB.score = game.score;
     await gameFromDB.save();
     gameFromDB.__v = undefined;
 
     (async function () {
-      let leaderboard = await Leaderboard.find().populate("games")[0];
-
+      let leaderboard = await Leaderboard.find({}).populate("games");
+      leaderboard = leaderboard[0];
+      if (!leaderboard) {
+        leaderboard = new Leaderboard();
+      }
       if (!leaderboard.games || leaderboard.games.length === 0) {
         leaderboard.games = [gameFromDB];
       } else if (leaderboard.games.length < leaderboard.size) {
@@ -57,7 +67,7 @@ router.route("/score").post(async (req, res) => {
         }
       }
       await leaderboard.save();
-    });
+    })();
 
     return res.json({ success: true, game: gameFromDB });
   } catch (error) {
