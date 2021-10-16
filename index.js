@@ -17,6 +17,9 @@ app.use("/users", usersRouter);
 const gamesRouter = require("./routers/games.router");
 app.use("/games", gamesRouter);
 
+const leaderboardsRouter = require("./routers/leaderboards.router");
+app.use("/leaderboards", leaderboardsRouter);
+
 app.get("/", (req, res) => {
   res.send("Connected to Rock-Paper-Scissors server");
 });
