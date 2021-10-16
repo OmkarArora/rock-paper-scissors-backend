@@ -46,6 +46,11 @@ router.route("/score").post(async (req, res) => {
     await gameFromDB.save();
     gameFromDB.__v = undefined;
 
+    /**
+     * TODO: Dont add scores of same game again and again - add check
+     *
+     */
+
     (async function () {
       let leaderboard = await Leaderboard.find({}).populate("games");
       leaderboard = leaderboard[0];
