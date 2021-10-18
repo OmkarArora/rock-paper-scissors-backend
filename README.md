@@ -1,5 +1,5 @@
 # Rock Paper Scissors
 
-This is the backend for the game
+Play the game at https://rpsgame-oa.netlify.app/
 
-App Link- TBD
+Frontend Repo: https://github.com/OmkarArora/rock-paper-scissors
